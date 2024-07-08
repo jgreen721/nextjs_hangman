@@ -26,6 +26,8 @@ export default function Home() {
         {page == 3 && <Categories page={page} handleChangePage={handleChangePage}/>}
         {page == 4 && <Game page={page} handleChangePage={handleChangePage}/>}
       </div>
+      <h2 className="text-5xl text-white absolute ">Hello Sexy</h2>
+
     </motion.main>
   );
 }
