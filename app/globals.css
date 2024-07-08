@@ -3,31 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  --darknavy: rgb(38, 22, 118);
+  --realdarknavy: #243041;
+  --blue: rgb(36, 98, 255);
+  --white: rgb(255, 255, 255);
+  --pinkgradient: linear-gradient(#fe71fe, #7199ff);
+  --mintgradient: linear-gradient(rgb(4, 201, 135), rgb(208, 255, 0));
+  --cardgradient: linear-gradient(#344aba, #001479);
+  --bluewhitegradient: linear-gradient(var(--blue), var(--white));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .custom-text {
+    background-image: linear-gradient(var(--bluewhitegradient));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* background: var(--bluewhitegradient); */
+  }
+
+  .main-container {
+    @apply flex min-h-screen flex-col items-center justify-between max-w-[85rem] m-auto border-2 border-black relative;
+  }
+
+  .view-container {
+    @apply absolute h-full w-full z-10 flex justify-center p-5;
   }
 }

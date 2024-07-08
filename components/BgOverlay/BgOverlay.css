@@ -1,0 +1,33 @@
+.carousel {
+  /* animation: carousel 10s forwards linear infinite; */
+}
+
+.carousel-bg {
+  background-image: url("../../public/images/background-desktop.svg");
+}
+
+.rotate-carousel-bg {
+  transform: translateX(99.9%) rotateY(180deg);
+}
+
+@keyframes carousel {
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .carousel-bg {
+    background-image: url("../../public/images/background-tablet.svg");
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .carousel-bg {
+    background-image: url("../../public/images/background-mobile.svg");
+  }
+
+  .carousel {
+    animation: none;
+  }
+}

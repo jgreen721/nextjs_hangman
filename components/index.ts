@@ -1,0 +1,5 @@
+export {default as BgOverlay} from "./BgOverlay/BgOverlay"
+export {default as StartScreen} from "./StartScreen/StartScreen"
+export {default as Instructions} from "./Instructions/Instructions"
+export {default as Categories} from "./Categories/Categories"
+export {default as Game} from "./Game/Game"

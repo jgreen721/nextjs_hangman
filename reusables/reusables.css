@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /*GameCard */
+
+  .border-t-12 {
+    border-top: 20px solid var(--blue);
+  }
+
+  .play-card {
+    @apply w-full h-[525px] md:w-[500px] relative rounded-[72px] border-t-12 border-l-4 border-r-2 border-customblue;
+  }
+
+  .play-card-bg {
+    @apply bg-card-gradient absolute w-full h-full opacity-85 rounded-[72px];
+  }
+
+  .play-card-content {
+    @apply relative h-full w-full p-5 flex flex-col items-center rounded-[72px] shadow-inner-card;
+  }
+
+  /*Btn */
+
+  .custom-shadow {
+    text-shadow: 2px 2px 10px black;
+  }
+}
