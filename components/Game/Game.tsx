@@ -22,15 +22,18 @@ const LetterBtn = ({letter,handleChooseLetter}:any)=>{
 const LetterPanel = ({letter,delay,isSelected}:any)=>{
 
   return (
-    <motion.div initial={{translateY:"-50px",scaleY:0}} animate={{translateY:0,scaleY:1}} transition={{type:"spring",delay}} style={{"--i":`${delay}s`} as any} className={`${isSelected ? 'animate-panel' : ''} bg-blue-500 opacity-100  p-4 md:p-8 flex items-center justify-center rounded-[25%] border-2 border-black ${letter == " " ? "opacity-0" : "opacity-100"} `}>
-      <h1 className={`text-3xl md:text-7xl text-white uppercase transition duration-1 ease-in ${isSelected ? 'animate-correct-letter' : 'opacity-0'}`}>{letter}</h1>
+    <motion.div initial={{translateY:"-50px",scaleY:0}} animate={{translateY:0,scaleY:1}} transition={{type:"spring",delay}} style={{"--i":`${delay}s`} as any} className={`${isSelected ? 'animate-panel' : ''} w-[50px] h-[50px] md:w-[100px] md:h-[100px] flex items-center justify-center rounded-[25%] border-b-4 shadow-md border-black relative`}>
+      <div className="absolute w-full h-full bg-blue-400 rounded-[25%] -top-1"></div>
+      <div className="absolute w-full h-full bg-blue-500 rounded-[25%] shadow-category-card-inset"></div>
+      <h1 className={`text-3xl md:text-8xl text-white uppercase transition duration-1 ease-in ${isSelected ? 'animate-correct-letter' : 'opacity-0'}`}>{letter}</h1>
+
     </motion.div>
   )
 }
 
 
 const GameScreen = ({topBtnText,header,gameState,renderValue,handleChangePage,setGameState}:any)=>{
-  console.log(gameState,renderValue)
+  // console.log(gameState,renderValue)
 
   return(
     <div className={`${gameState == renderValue ? 'translate-y-0' : 'translate-y-[100%]'} transition ease-in absolute w-full h-full flex items-center justify-center z-[1000]`}>
@@ -40,7 +43,14 @@ const GameScreen = ({topBtnText,header,gameState,renderValue,handleChangePage,se
        <Header>{header}</Header>
        </motion.div>
         <div className="mt-10 flex flex-col gap-4">
-           <Btn handlePress={()=>{setGameState(null)}} color="bg-blue-500" text={topBtnText}/> 
+           <Btn handlePress={()=>{
+             if(gameState == "pause"){
+             setGameState(null)}
+             else{
+              setGameState("reset")
+
+             }
+             }} color="bg-blue-500" text={topBtnText}/> 
            <Btn handlePress={()=>{handleChangePage(3)}} color="bg-blue-500" text="New Category"/> 
            <Btn handlePress={()=>{handleChangePage(1)}} color="bg-btn-gradient" text="Quit Game"/> 
         </div>
@@ -79,12 +89,26 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
       // console.log('choose a word!')
       let random = Math.random() * words.length | 0;
       let tempWinningWord:any = words[random];
+      console.log(tempWinningWord)
       setWinningWord(tempWinningWord?.name.replaceAll(" ",""))
       serializeToTiles(tempWinningWord?.name)
     }
 
 
   },[words]);
+
+  useEffect(()=>{
+    if(gameState == "reset"){
+      let random = Math.random() * words.length | 0;
+      let tempWinningWord:any = words[random];
+      setWinningWord(tempWinningWord?.name.replaceAll(" ",""))
+      serializeToTiles(tempWinningWord?.name)
+      setLetters((letters)=>letters.map(l=>({...l,isPressed:false})))
+      setGameState(null)
+      updateLifeBar(100);
+
+    }
+  },[gameState])
 
   const handlePause = ()=>{
     // handleChangePage(1);
@@ -119,7 +143,9 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
       let temp = lifeBar - 10;
       updateLifeBar(temp);
       if(temp == 0){
-        gameOver("lose");
+        setTimeout(()=>{
+        gameOver("lose")
+        },1000)
       }
         return;
     }
@@ -141,8 +167,9 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
     console.log("String",string,winningWord);
     if(string == winningWord){
       // console.log("player has won!!")
-      gameOver("win")
-    }
+      setTimeout(()=>{
+        gameOver("win")
+        },1000)    }
   }
 
 
