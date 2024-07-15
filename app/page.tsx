@@ -17,7 +17,7 @@ export default function Home() {
 
   const playAudio = () => {
     if (audioRef.current) {
-      // audioRef.current.play()
+      audioRef.current.play()
     }
   };
 
