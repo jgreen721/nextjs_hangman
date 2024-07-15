@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.customshadow {
+  /* text-shadow: 2px 2px 5px black, 5px 5px 10px var(--lightpurple),
+    -5px -5px 10px black; */
+  -webkit-text-stroke-width: 20px;
+  -webkit-text-stroke-color: rgba(50, 45, 55);
+}
+
+@media screen and (max-width: 750px) {
+  .customshadow {
+    -webkit-text-stroke-width: 10px;
+    -webkit-text-stroke-color: rgba(50, 45, 55);
+  }
+}
 @layer utilities {
   /*GameCard */
 
@@ -10,7 +23,7 @@
   }
 
   .play-card {
-    @apply w-full h-[525px] md:w-[500px] relative rounded-[72px] border-t-12 border-l-4 border-r-2 border-customblue;
+    @apply w-full max-h-[525px] md:w-[500px] relative rounded-[72px] border-t-12 border-l-4 border-r-2 border-customblue;
   }
 
   .play-card-bg {

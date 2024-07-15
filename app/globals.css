@@ -4,9 +4,12 @@
 
 :root {
   --darknavy: rgb(38, 22, 118);
+  --purple: purple;
   --realdarknavy: #243041;
   --blue: rgb(36, 98, 255);
+  --lightblue: rgb(97, 142, 255);
   --white: rgb(255, 255, 255);
+  --lightpurple: #887dc0;
   --pinkgradient: linear-gradient(#fe71fe, #7199ff);
   --mintgradient: linear-gradient(rgb(4, 201, 135), rgb(208, 255, 0));
   --cardgradient: linear-gradient(#344aba, #001479);
@@ -14,19 +17,18 @@
 }
 
 @layer utilities {
-  .custom-text {
+  /* .custom-text {
     background-image: linear-gradient(var(--bluewhitegradient));
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
-    /* background: var(--bluewhitegradient); */
-  }
+  } */
 
   .main-container {
-    @apply flex min-h-screen flex-col items-center justify-between max-w-[85rem] m-auto border-2 border-black relative;
+    @apply flex flex-col items-center justify-between max-w-[85rem] m-auto relative;
   }
 
   .view-container {
-    @apply absolute h-full w-full z-10 flex justify-center p-5;
+    @apply absolute h-full w-full z-10 flex flex-col p-3 md:p-5 md:p-10 overflow-auto;
   }
 }

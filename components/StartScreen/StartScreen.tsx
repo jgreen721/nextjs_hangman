@@ -8,8 +8,8 @@ import "../components_styles.css"
 const StartScreen:React.FC<any> = ({page,handleChangePage}) => {
 
   const startGame=()=>{
-    console.log("start game!")
-    handleChangePage(4)
+    console.log("start game -- direct to categories")
+    handleChangePage(3)
   }
 
   const showInstructions=()=>{
@@ -18,19 +18,19 @@ const StartScreen:React.FC<any> = ({page,handleChangePage}) => {
   }
 
   return (
-    <motion.div initial={{translateX:0}} transition={{type:"spring",duration:2}} exit={{translateX:'100%'}} className="view-container items-center">
+    <div className={`view-container items-center justify-center`}>
         <GameCard>
           <div className="relative h-full w-full flex justify-center flex-col items-center">
-            <motion.div initial={{translateY:-50,scaleX:0}} animate={{translateY:0,scaleX:1}} transition={{type:"spring",delay:.75}} className="absolute w-full h-full -top-[65%]">
-              <Image src="./images/logo.svg" fill alt="img"/>
+            <motion.div initial={{translateY:-50,scaleX:0}} animate={{translateY:0,scaleX:1}} transition={{type:"spring",delay:.75}} className="absolute w-full h-full -top-[80%] flex items-center justify-center">
+              <Image src="./images/logo.svg" width={300} height={200} alt="img"/>
            </motion.div>
-              <GradientBtn handlePress={startGame} size={200} img="./images/icon-play.svg"/>
+              <GradientBtn handlePress={startGame} size={200} imgSize={65} img="./images/icon-play.svg"/>
             <div className="mt-10">
               <Btn handlePress={showInstructions} color="bg-blue-500" text="How to Play"/>
             </div>
           </div>
         </GameCard>
-    </motion.div>
+    </div>
   )
 }
 

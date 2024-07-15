@@ -1,33 +1,58 @@
 "use client";
-import {useState} from "react";
+import {useState,useRef, useEffect} from "react";
 import { BgOverlay,StartScreen,Instructions,Categories,Game } from "@/components";
-import {AnimatePresence, motion} from "framer-motion"
+import Template from "./template"
+import {motion} from "framer-motion"
 
 
 export default function Home() {
-  const [page,setPage] = useState(1)
+  const [page,setPage] = useState(4)
+  const [category,setCategory] = useState("Movies");
+  const [width,setWidth] = useState<any>(null);
+  const audioRef = useRef();
   // 1 == StartScreen
   // 2 == Instructions
   // 3 == Categories
   // 4 == Game
 
+  const playAudio = () => {
+    if (audioRef.current) {
+      // audioRef.current.play()
+    }
+  };
+
+  useEffect(()=>{
+    setWidth(window.innerWidth)
+  },[]);
+
+
 
   const handleChangePage = (pageNum:number)=>{
     console.log("pageNum",pageNum);
     setPage(pageNum)
+    playAudio();
   }
   return (
-    <motion.main initial={{translateY:'-100%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
+    // <motion.main initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
+    <main className="main-container">
+    
       <BgOverlay/>
-      <AnimatePresence key={page}/>
-      <div className="absolute z-50 w-full h-full flex justify-center">
-        {page == 1 && <StartScreen page={page} handleChangePage={handleChangePage}/>}
-        {page == 2 && <Instructions page={page} handleChangePage={handleChangePage}/>}
-        {page == 3 && <Categories page={page} handleChangePage={handleChangePage}/>}
-        {page == 4 && <Game page={page} handleChangePage={handleChangePage}/>}
-      </div>
-      <h2 className="text-5xl text-white absolute ">Hello Sexy</h2>
+    
+        {/* <Template key={page}>  */}
+            {page == 1 &&   <StartScreen page={page}  handleChangePage={handleChangePage}/>}
+            {page == 2 &&   <Instructions page={page} width={width} handleChangePage={handleChangePage}/>}
+            {page == 3 &&   <Categories setCategory={setCategory} width={width} page={page} handleChangePage={handleChangePage}/>}
+            {page == 4 &&   <Game category={category} width={width} page={page} handleChangePage={handleChangePage}/>}
+       {/* </Template> */}
 
-    </motion.main>
+       <audio ref={audioRef as any} loop={true} id="audioPlayer" className="w-100 absolute hidden" controls src="/gameaudio.mp3">
+        Your browser does not support the audio element.
+      </audio>
+
+
+
+ 
+    </main>
+    // </motion.main>
   );
 }

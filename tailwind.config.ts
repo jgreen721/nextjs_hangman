@@ -19,25 +19,38 @@ const config: Config = {
       },
       borderColor:{
         "dark-gray":"var(--darknavy)",
-        "customblue":"var(--blue)"
+        "customblue":"var(--blue)",
       },
    
       backgroundColor:{
-        "dark-gray":"var(--realdarknavy)"
+        "dark-gray":"var(--realdarknavy)",
+        "custom-blue":"var(--blue)",
+        "lightblue":"var(--lightblue)"
+
       },
       boxShadow:{
         "inner-card":"-2px -4px 15px var(--darknavy) inset",
         "btn-shadow":"10px 5px 25px var(--darknavy)",
         "btn-inset":"5px 5px 20px var(--darknavy) inset",
         "btn-inset-bottom":"5px -5px 20px var(--darknavy) inset",
-        "light-shadow":"5px 5px 15px rgb(255,255,255,.25)"
+        "light-shadow":"5px 5px 15px rgb(255,255,255,.25)",
+        "category-card-inset":"3px -3px 10px rgb(15,25,25,.5) inset"
       },
       letterSpacing:{
         "custom-spacing":"2px"
       },
 
       textShadow:{
-        "custom":"2px 2px 10px black"
+        "custom":"2px 2px 10px black, 3px 3px 20px white",
+        "test":"2px 4px 15px orange"
+      },
+      fontSize:{
+        "card-header":"88px"
+      },
+      textColor:{
+        "custom-blue":"var(--blue)",
+        "custom-purple":"var(--lightpurple)",
+        "custom-darkpurple":"var(--darknavy)",
       }
     },
   },

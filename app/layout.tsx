@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Mouse_Memoirs} from "next/font/google";
 import "./globals.css";
-
 const inter = Mouse_Memoirs({subsets:["latin"], weight:['400']});
 
 export const metadata: Metadata = {
