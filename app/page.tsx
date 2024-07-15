@@ -38,12 +38,12 @@ export default function Home() {
     
       <BgOverlay/>
     
-        {/* <Template key={page}>  */}
+        <Template key={page}> 
             {page == 1 &&   <StartScreen page={page}  handleChangePage={handleChangePage}/>}
             {page == 2 &&   <Instructions page={page} width={width} handleChangePage={handleChangePage}/>}
             {page == 3 &&   <Categories setCategory={setCategory} width={width} page={page} handleChangePage={handleChangePage}/>}
             {page == 4 &&   <Game category={category} width={width} page={page} handleChangePage={handleChangePage}/>}
-       {/* </Template> */}
+       </Template>
 
        <audio ref={audioRef as any} loop={true} id="audioPlayer" className="w-100 absolute hidden" controls src="/gameaudio.mp3">
         Your browser does not support the audio element.
