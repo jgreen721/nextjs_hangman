@@ -9,7 +9,7 @@ export default function Home() {
   const [page,setPage] = useState(1)
   const [category,setCategory] = useState("Movies");
   const [width,setWidth] = useState<any>(null);
-  const audioRef = useRef();
+  const audioRef = useRef<any>();
   // 1 == StartScreen
   // 2 == Instructions
   // 3 == Categories
