@@ -90,4 +90,27 @@
       filter: blur(0px);
     }
   }
+
+  .animate-panel {
+    animation: animate-panel 1s 0.5s forwards;
+  }
+
+  @keyframes animate-panel {
+    75% {
+      transform: scaleY(1.2);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  .player-died-animation {
+    animation: player-died 2.5s 0.5s forwards;
+  }
+
+  @keyframes player-died {
+    100% {
+      transform: rotate(1080deg) scale(0.25);
+    }
+  }
 }
