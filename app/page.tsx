@@ -9,7 +9,7 @@ import { FaVolumeMute } from "react-icons/fa";
 
 
 const AudioBtn = ({audioRef}:any)=>{
-  const [isPlaying,setIsPlaying] = useState(false);
+  const [isPlaying,setIsPlaying] = useState(true);
 
 
   return(
