@@ -78,7 +78,7 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
   const [words,setWords] = useState([])
   const [winningWord,setWinningWord] = useState<any>(null)
   const [wordTiles,setWordTiles] = useState<any>([])
-  const [lifeBar,updateLifeBar] = useState(100);
+  const [lifeBar,updateLifeBar] = useState(20);
   const [gameState,setGameState] = useState<any>(null)
   const [score,setScore] = useState(0);
   const [points,setPoints] = useState(100);

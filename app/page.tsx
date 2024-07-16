@@ -33,8 +33,8 @@ export default function Home() {
     // playAudio();
   }
   return (
-    // <motion.main initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
-    <main className="main-container">
+    <motion.main initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
+    {/* <main className="main-container"> */}
     
       <BgOverlay/>
     
@@ -52,7 +52,7 @@ export default function Home() {
 
 
  
-    </main>
-    // </motion.main>
+    {/* </main> */}
+     </motion.main>
   );
 }

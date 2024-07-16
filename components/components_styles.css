@@ -113,4 +113,15 @@
       transform: rotate(1080deg) scale(0.25);
     }
   }
+
+  .animate-game-text {
+    transform: scaleY(0);
+    animation: animate-game-text 1s 1.5s forwards;
+  }
+
+  @keyframes animate-game-text {
+    100% {
+      transform: scaleY(1);
+    }
+  }
 }

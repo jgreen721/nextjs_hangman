@@ -37,7 +37,7 @@ const Categories:React.FC<any> = ({page,handleChangePage,setCategory,width}) => 
          <div className="flex justify-between items-center md:justify-start w-full  relative">
           <GradientBtn img="images/icon-back.svg" size={width > 750 ? 94 : 64} imgSize={width > 750 ? 45 : 35} handlePress={()=>handleChangePage(1)}/>
         <div className="md:absolute md:w-full text-center">
-          <Header>Categories</Header>
+          <Header isHeader={true}>Categories</Header>
         </div>
       </div>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-12">
