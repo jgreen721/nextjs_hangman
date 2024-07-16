@@ -30,10 +30,19 @@ export default function Home() {
   const handleChangePage = (pageNum:number)=>{
     console.log("pageNum",pageNum);
     setPage(pageNum)
-    // playAudio();
+    playAudio();
   }
   return (
-    <motion.main initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
+    <motion.main onDoubleClick={()=>{
+      if(audioRef.current.paused){
+      audioRef.current.play()
+      }
+      else{
+        audioRef.current.pause()
+
+      }
+
+    }} initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
     {/* <main className="main-container"> */}
     
       <BgOverlay/>

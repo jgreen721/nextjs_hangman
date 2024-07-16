@@ -52,9 +52,11 @@ const GameScreen = ({topBtnText,header,gameState,renderValue,handleChangePage,se
     <div className={`${gameState == renderValue ? 'translate-y-0' : 'translate-y-[100%]'} transition ease-in absolute w-full h-full flex items-center justify-center z-[1000]`}>
     <GameCard>
       <div className="relative h-full w-full flex justify-center flex-col items-center">
-        <motion.div initial={{translateY:-50,scaleX:0}} animate={{translateY:0,scaleX:1}} transition={{type:"spring",delay:.75}} className="absolute w-full h-full -top-[70%] flex items-center justify-center">
-       <Header>{header}</Header>
-       </motion.div>
+        {/* <motion.div initial={{translateY:-50,scaleX:0}} animate={{translateY:0,scaleX:1}} transition={{type:"spring",delay:.75}} className="absolute w-full h-full -top-[70%] flex items-center justify-center"> */}
+       <div className={`${gameState == renderValue ? 'animate-game-text' : ''}`}>
+        <Header>{header}</Header>
+       </div>
+       {/* </motion.div> */}
         <div className="mt-10 flex flex-col gap-4">
            <Btn handlePress={()=>{
              if(gameState == "pause"){
@@ -78,7 +80,7 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
   const [words,setWords] = useState([])
   const [winningWord,setWinningWord] = useState<any>(null)
   const [wordTiles,setWordTiles] = useState<any>([])
-  const [lifeBar,updateLifeBar] = useState(20);
+  const [lifeBar,updateLifeBar] = useState(100);
   const [gameState,setGameState] = useState<any>(null)
   const [score,setScore] = useState(0);
   const [points,setPoints] = useState(100);

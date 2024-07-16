@@ -116,7 +116,7 @@
 
   .animate-game-text {
     transform: scaleY(0);
-    animation: animate-game-text 1s 1.5s forwards;
+    animation: animate-game-text 1s 1s forwards;
   }
 
   @keyframes animate-game-text {
