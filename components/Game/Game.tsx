@@ -1,16 +1,29 @@
 "use client"
-import React, {useEffect,useState} from 'react'
+import React, {useEffect,useState,useRef} from 'react'
 import "../components_styles.css"
 import { GradientBtn,GameCard,Header,Btn } from '@/reusables'
 import {motion} from "framer-motion"
 import Image from "next/image"
+import CountUp from "react-countup"
 
 const LetterBtn = ({letter,handleChooseLetter}:any)=>{
+  const [active,setActive] = useState(false);
 
   return (
-<button disabled={letter.isPressed} onClick={()=>handleChooseLetter(letter.letter)} className="relative text-xl md:text-4xl text-custom-darkpurple min-w-[35px] min-h-[35px]">
+<button onMouseEnter={()=>{
+  if(letter.isPressed)return;
+  setActive(true);
+
+}}
+onMouseLeave={()=>{
+  if(letter.isPressed)return;
+  setActive(false);
+
+}}
+
+disabled={letter.isPressed} onClick={()=>handleChooseLetter(letter.letter)} className="relative text-xl md:text-4xl text-custom-darkpurple min-w-[35px] min-h-[35px]">
   <div className={`absolute z-20 ${letter.isPressed ? 'bg-white opacity-75' : 'bg-white'} w-full h-full top-0 rounded-[14px]`}></div>
-  <div className="absolute w-full h-full bg-purple-500 top-[2px] rounded-[14px]"></div>
+  <div className={`absolute w-full h-full bg-purple-500 top-[2px] rounded-[14px] transition ease-in duration-1 ${active ? 'shadow-btn-shadow scale-[1.02]' : 'shadow-btn-inset scale-[1]'}`}></div>
   <div className="relative z-30 flex items-center justify-center p-2">
     <h5 className="text-xl md:text-4xl text-custom-darkpurple">{letter.letter}</h5>
   </div>
@@ -67,6 +80,9 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
   const [wordTiles,setWordTiles] = useState<any>([])
   const [lifeBar,updateLifeBar] = useState(100);
   const [gameState,setGameState] = useState<any>(null)
+  const [score,setScore] = useState(0);
+  const [points,setPoints] = useState(100);
+  const priorRef = useRef<any>();
 
 
   useEffect(()=>{
@@ -142,10 +158,11 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
       console.log("valid guess. letter exists in winning word");
       let temp = lifeBar - 10;
       updateLifeBar(temp);
+      setPoints((points)=>points=points-10);
       if(temp == 0){
         setTimeout(()=>{
         gameOver("lose")
-        },1000)
+        },1500)
       }
         return;
     }
@@ -165,11 +182,25 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
     })
 
     console.log("String",string,winningWord);
+    if(priorRef.current?.length){
+    let diff = Math.abs(priorRef.current.length - string.length);
+    // priorRef.current = string;
+    setScore((score)=>score=score + (points * diff));
+
+    }
+    else{
+      let diff = string.length;
+      setScore((score)=>score=points * diff);
+
+    }
+    priorRef.current = string;
+    setPoints(100)
+
     if(string == winningWord){
       // console.log("player has won!!")
       setTimeout(()=>{
         gameOver("win")
-        },1000)    }
+        },1750)    }
   }
 
 
@@ -194,28 +225,33 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
 
       <div>
         <div className="flex items-center justify-between">
-          <div className="flex gap-10 items-center">
+          <div className="flex gap-4 md:gap-10 items-center">
           <GradientBtn img="/images/icon-menu.svg" size={width > 750 ? 94 : 64}  imgSize={width > 750 ? 45 : 35} handlePress={handlePause}/>
           <h1 className="text-3xl md:text-8xl text-white">{category}</h1>
           </div>
+          <div>
           <div className="flex items-center gap-5">
             <div>
-              <div className="relative w-[200px] h-5 bg-white rounded-full flex items-center px-2">
+              <div className="relative w-[125px] md:w-[200px] h-5 bg-white rounded-full flex items-center px-2">
                 <div style={{width:`${lifeBar}%`, transition:'.5s ease',backgroundColor:`rgb(${100-lifeBar},15,${150 - lifeBar})`}} className={`relative h-3 rounded-full bg-dark-gray`}></div>
               </div>
             </div>
-            <div className={`h-[40px] w-[40px] relative ${lifeBar == 0 ? 'player-died-animation' : ''}`}>
+            <div className={`h-[30px] w-[30px] md:h-[40px] md:w-[40px] relative ${lifeBar == 0 ? 'player-died-animation' : ''}`}>
               <Image src="./images/icon-heart.svg" fill alt="img"/>
             </div>
+            </div>
+            <h5 className="text-xl text-white">Score:<CountUp end={score} duration={1}/>
+             </h5>
+
           </div>
         </div>
       </div>
 
 
-      <div className="flex gap-10 my-10 flex-wrap">
+      <div className="flex gap-4 md:gap-10 my-4 md:my-10 flex-wrap">
         {wordTiles.length > 0 && wordTiles.map((wordArr:any,idx:any)=>
       
-          <div className="flex flex-wrap gap-2 md:gap-4 mx-5 md:mx-10" key={idx}>
+          <div className="flex flex-wrap gap-2 md:gap-4 mx-3 md:mx-10" key={idx}>
            {wordArr.arr.map((letter:any,index:any)=>(
           <LetterPanel key={letter.id} letter={letter.letter} isSelected={letter.isSelected} delay={index/4}/>
            
@@ -225,7 +261,7 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
            )}
 
       </div>
-      <div className="grid grid-cols-9 gap-2 md:gap-5">
+      <div className="grid grid-cols-9 gap-2 md:gap-5 mt-10">
         {letters.map(letter=>(
           <LetterBtn handleChooseLetter={handleChooseLetter} key={letter.id} letter={letter}/>
           ))}

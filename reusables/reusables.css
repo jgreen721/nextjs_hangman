@@ -27,7 +27,7 @@
   }
 
   .play-card-bg {
-    @apply bg-card-gradient absolute w-full h-full opacity-85 rounded-[72px];
+    @apply bg-card-gradient absolute w-full h-full opacity-[95%] rounded-[72px];
   }
 
   .play-card-content {

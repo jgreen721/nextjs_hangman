@@ -6,7 +6,7 @@ import {motion} from "framer-motion"
 
 
 export default function Home() {
-  const [page,setPage] = useState(4)
+  const [page,setPage] = useState(1)
   const [category,setCategory] = useState("Movies");
   const [width,setWidth] = useState<any>(null);
   const audioRef = useRef<any>();
@@ -30,7 +30,7 @@ export default function Home() {
   const handleChangePage = (pageNum:number)=>{
     console.log("pageNum",pageNum);
     setPage(pageNum)
-    playAudio();
+    // playAudio();
   }
   return (
     // <motion.main initial={{translateY:'0%'}} animate={{translateY:0}} transition={{type:"spring"}} className="main-container">
