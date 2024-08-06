@@ -219,9 +219,9 @@ const Game:React.FC<any> = ({width,page,handleChangePage,category}) => {
     <div className={`view-container`}>
 
 
-      <GameScreen header="Paused" handleChangePage={handleChangePage} setGameState={setGameState} topBtnText="continue" gameState={gameState} renderValue="pause"/>
+       <GameScreen header="Paused" handleChangePage={handleChangePage} setGameState={setGameState} topBtnText="continue" gameState={gameState} renderValue="pause"/>
       <GameScreen header="You Win" handleChangePage={handleChangePage} setGameState={setGameState} topBtnText="play again" gameState={gameState} renderValue="win"/>
-      <GameScreen header="You Lose" handleChangePage={handleChangePage} setGameState={setGameState} topBtnText="play again" gameState={gameState} renderValue="lose"/>
+      <GameScreen header="You Lose" handleChangePage={handleChangePage} setGameState={setGameState} topBtnText="play again" gameState={gameState} renderValue="lose"/> 
 
 
 

@@ -29,6 +29,6 @@
   }
 
   .view-container {
-    @apply absolute h-full w-full z-10 flex flex-col p-3 md:p-5 md:p-10 overflow-auto;
+    @apply absolute h-full w-full z-10 flex flex-col p-3 md:p-5 md:p-10 overflow-hidden;
   }
 }
